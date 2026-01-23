@@ -7,42 +7,62 @@
 */
 
 :root {
-	/* Used for: Main background (body, sidebar, select options) */
-	--color-bg-primary: #312450;
+	/* Primary Brand Colors - MSOE Palette */
 	
-	/* Used for: Body text, input labels (checkbox/radio), nav hover states */
-	--color-text-medium: rgba(255, 255, 255, 0.55);
+	/* MSOE Red - Main brand accent, used for primary CTAs, gradients, and highlights */
+	--color-brand-primary: #C5050C;
 	
-	/* Used for: Link underlines, placeholders, section header text, nav default state */
-	--color-text-light: rgba(255, 255, 255, 0.35);
+	/* MSOE Red Dark - Used for backgrounds, footer, sidebar */
+	--color-brand-primary-dark: #520D0A;
 	
-	/* Used for: Headings, labels, buttons, icons, form focus states, active states */
+	/* Hyper Blue (Dark) - Used for headers, secondary accents, wrapper backgrounds */
+	--color-brand-secondary: #013F5A;
+	
+	/* Hyper Blue (Light) - Used for hover effects, icon accents, and lighter backgrounds */
+	--color-brand-secondary-light: #0095A7;
+	
+	/* Text and Contrast Colors */
+	
+	/* Used for: Main body text, secondary text content */
+	--color-text-medium: rgba(255, 255, 255, 0.65);
+	
+	/* Used for: Lighter text, placeholders, secondary information */
+	--color-text-light: rgba(255, 255, 255, 0.45);
+	
+	/* Used for: Headings, labels, button text, primary text emphasis */
 	--color-text-primary: #ffffff;
 	
-	/* Used for: Borders (boxes, forms, tables, lists, menus, splits, spotlights) */
+	/* Background and Border Colors */
+	
+	/* Used for: Primary background (body, sidebar) */
+	--color-bg-primary: #1D252D;
+	
+	/* Used for: Borders, subtle dividers */
 	--color-border: rgba(255, 255, 255, 0.15);
 	
-	/* Used for: Primary brand color - gradient start, wrapper style1, header, icon colors */
-	--color-brand-purple: #5e42a6;
-	
-	/* Used for: Secondary brand color - gradient end, wrapper style3, accent color */
-	--color-brand-pink: #b74e91;
-	
-	/* Used for: Subtle backgrounds (code, forms, features, checkboxes, tables) */
+	/* Used for: Subtle backgrounds (code, forms, features) */
 	--color-bg-subtle: rgba(255, 255, 255, 0.05);
 	
-	/* Used for: Brand variation - wrapper style1-alt, icon colors */
-	--color-brand-purple-dark: #493382;
+	/* Neutral Tonal Colors */
 	
-	/* Used for: Brand variation - wrapper style2, icon colors */
-	--color-brand-blue: #5052b5;
+	/* Charcoal - Used for wrapper alt backgrounds and secondary containers */
+	--color-neutral-dark: #333F48;
 	
-	/* Used for: Brand variation - wrapper style2-alt, icon colors */
-	--color-brand-blue-dark: #3e4094;
+	/* Slate - Used for tertiary accent backgrounds and muted colors */
+	--color-neutral-medium: #5B6770;
 	
-	/* Used for: Brand variation - wrapper style3-alt, icon colors */
-	--color-brand-pink-dark: #953d75;
+	/* Innovation Gray Light - Used for subtle accents and lighter tones */
+	--color-neutral-light: #A9D1D5;
 	
+	/* Complementary Colors for Visual Interest */
+	
+	/* Volt Yellow - Optional accent for special highlights (can be used sparingly) */
+	--color-accent-warm: #BFD500;
+	
+	/* Catalyst Red Light - Alternative warm accent */
+	--color-accent-warm-alt: #F9423A;
+	
+
 	/* Used for: Wrapper alt background */
 	--color-bg-alt: #261c3e;
 	
@@ -250,10 +270,10 @@ input, select, textarea {
 		}
 
 			h1.major:after {
-				background-image: -moz-linear-gradient(to right, var(--color-brand-purple), var(--color-brand-pink));
-				background-image: -webkit-linear-gradient(to right, var(--color-brand-purple), var(--color-brand-pink));
-				background-image: -ms-linear-gradient(to right, var(--color-brand-purple), var(--color-brand-pink));
-				background-image: linear-gradient(to right, var(--color-brand-purple), var(--color-brand-pink));
+				background-image: -moz-linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
+				background-image: -webkit-linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
+				background-image: -ms-linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
+				background-image: linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
 				-moz-transition: max-width 0.2s ease;
 				-webkit-transition: max-width 0.2s ease;
 				-ms-transition: max-width 0.2s ease;
@@ -2589,27 +2609,27 @@ input, select, textarea {
 			}
 
 				.wrapper.style1 .icon.major:before {
-					color: var(--color-brand-purple);
+					color: var(--color-brand-secondary);
 				}
 
 				.wrapper.style1-alt .icon.major:before {
-					color: var(--color-brand-purple-dark);
+					color: var(--color-neutral-medium);
 				}
 
 				.wrapper.style2 .icon.major:before {
-					color: var(--color-brand-blue);
+					color: var(--color-brand-secondary-light);
 				}
 
 				.wrapper.style2-alt .icon.major:before {
-					color: var(--color-brand-blue-dark);
+					color: var(--color-brand-secondary);
 				}
 
 				.wrapper.style3 .icon.major:before {
-					color: var(--color-brand-pink);
+					color: var(--color-brand-primary);
 				}
 
 				.wrapper.style3-alt .icon.major:before {
-					color: var(--color-brand-pink-dark);
+					color: var(--color-brand-primary-dark);
 				}
 
 /* Image */
@@ -3293,27 +3313,27 @@ input, select, textarea {
 		}
 
 		.wrapper.style1 {
-			background-color: var(--color-brand-purple);
+			background-color: var(--color-brand-primary-dark);
 		}
 
 		.wrapper.style1-alt {
-			background-color: var(--color-brand-purple-dark);
+			background-color: var(--color-neutral-medium);
 		}
 
 		.wrapper.style2 {
-			background-color: var(--color-brand-blue);
+			background-color: var(--color-brand-secondary-light);
 		}
 
 		.wrapper.style2-alt {
-			background-color: var(--color-brand-blue-dark);
+			background-color: var(--color-brand-secondary);
 		}
 
 		.wrapper.style3 {
-			background-color: var(--color-brand-pink);
+			background-color: var(--color-brand-primary);
 		}
 
 		.wrapper.style3-alt {
-			background-color: var(--color-brand-pink-dark);
+			background-color: var(--color-brand-primary-dark);
 		}
 
 		.wrapper.fullscreen {
@@ -3423,7 +3443,7 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		background-color: var(--color-brand-purple);
+		background-color: var(--color-brand-secondary);
 		cursor: default;
 		padding: 1.75em 2em;
 	}
@@ -3818,10 +3838,10 @@ input, select, textarea {
 			}
 
 			#sidebar nav a:after {
-				background-image: -moz-linear-gradient(to right, var(--color-brand-purple), var(--color-brand-pink));
-				background-image: -webkit-linear-gradient(to right, var(--color-brand-purple), var(--color-brand-pink));
-				background-image: -ms-linear-gradient(to right, var(--color-brand-purple), var(--color-brand-pink));
-				background-image: linear-gradient(to right, var(--color-brand-purple), var(--color-brand-pink));
+				background-image: -moz-linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
+				background-image: -webkit-linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
+				background-image: -ms-linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
+				background-image: linear-gradient(to right, var(--color-brand-secondary), var(--color-brand-primary));
 				-moz-transition: max-width 0.2s ease;
 				-webkit-transition: max-width 0.2s ease;
 				-ms-transition: max-width 0.2s ease;
