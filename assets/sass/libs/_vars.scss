@@ -23,27 +23,44 @@
 	);
 
 // Font.
+	// MOZEE Motorsports typography (verified against the logo, a Gotham-style
+	// heavy geometric oblique): Montserrat is the closest free match, self-hosted
+	// as WOFF2 in assets/webfonts/ (see the @font-face block at the top of
+	// assets/css/main.css, which this map documents but does not generate --
+	// no build tooling exists in this repo to compile Sass to CSS).
+	// Display headings (h1/h2/h3) use weight-display (900) + italic, uppercase,
+	// echoing the logo's oblique lockup. Nav/buttons use weight-bold (700)
+	// uppercase. Body copy uses weight (400/normal) upright, never italic.
 	$font: (
-		family:				(Arial, Helvetica, sans-serif),
+		family:				(Montserrat, Arial, Helvetica, sans-serif),
 		family-fixed:		('Courier New', monospace),
 		weight:				normal,
 		weight-bold:		bold,
+		weight-display:		900,
+		style-display:		italic,
 		kerning-alt:		0.25em
 	);
 
 // Palette.
+	// MOZEE Motorsports brand palette (verified, sampled from the logo file):
+	// black #000000, white #FFFFFF, red #C52127, light gray #BDBEC0, dark gray #58585A.
+	// accent1 = red (primary brand accent), accent2 = dark gray (secondary), accent3 = light gray (tertiary).
+	// -alt variants are Sass darken() shades of the same base color, not new hues.
+	// NOTE: no build tooling exists in this repo to recompile this file to CSS; the
+	// shipped site is driven by the hand-maintained :root block in assets/css/main.css,
+	// which this map is kept in sync with so this source file doesn't go stale/misleading.
 	$palette: (
-		bg:					#312450,
-		bg-alt:				darken(#312450, 5),
-		fg:					rgba(255,255,255,0.55),
+		bg:					#000000,
+		bg-alt:				#0d0d0e,
+		fg:					rgba(255,255,255,0.65),
 		fg-bold:			#ffffff,
-		fg-light:			rgba(255,255,255,0.35),
-		border:				rgba(255,255,255,0.15),
+		fg-light:			rgba(255,255,255,0.45),
+		border:				rgba(255,255,255,0.2),
 		border-bg:			rgba(255,255,255,0.05),
-		accent1:			#5e42a6,
-		accent1-alt:		darken(#5e42a6, 10),
-		accent2:			#5052b5,
-		accent2-alt:		darken(#5052b5, 10),
-		accent3:			#b74e91,
-		accent3-alt:		darken(#b74e91, 10)
+		accent1:			#C52127,
+		accent1-alt:		darken(#C52127, 10),
+		accent2:			#58585A,
+		accent2-alt:		darken(#58585A, 10),
+		accent3:			#BDBEC0,
+		accent3-alt:		darken(#BDBEC0, 10)
 	);
