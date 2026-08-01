@@ -6,77 +6,126 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-:root {
-	/* Primary Brand Colors - MSOE Palette */
-	
-	/* MSOE Red - Main brand accent, used for primary CTAs, gradients, and highlights */
-	--color-brand-primary: #C5050C;
-	
-	/* MSOE Red Dark - Used for backgrounds, footer, sidebar */
-	--color-brand-primary-dark: #520D0A;
-	
-	/* Hyper Blue (Dark) - Used for headers, secondary accents, wrapper backgrounds */
-	--color-brand-secondary: #013F5A;
-	
-	/* Hyper Blue (Light) - Used for hover effects, icon accents, and lighter backgrounds */
-	--color-brand-secondary-light: #0095A7;
-	
-	/* Text and Contrast Colors */
-	
-	/* Used for: Main body text, secondary text content */
-	--color-text-medium: rgba(255, 255, 255, 0.65);
-	
-	/* Used for: Lighter text, placeholders, secondary information */
-	--color-text-light: rgba(255, 255, 255, 0.45);
-	
-	/* Used for: Headings, labels, button text, primary text emphasis */
-	--color-text-primary: #ffffff;
-	
-	/* Background and Border Colors */
-	
-	/* Used for: Primary background (body, sidebar) */
-	--color-bg-primary: #1D252D;
-	
-	/* Used for: Borders, subtle dividers */
-	--color-border: rgba(255, 255, 255, 0.15);
-	
-	/* Used for: Subtle backgrounds (code, forms, features) */
-	--color-bg-subtle: rgba(255, 255, 255, 0.05);
-	
-	/* Neutral Tonal Colors */
-	
-	/* Charcoal - Used for wrapper alt backgrounds and secondary containers */
-	--color-neutral-dark: #333F48;
-	
-	/* Slate - Used for tertiary accent backgrounds and muted colors */
-	--color-neutral-medium: #5B6770;
-	
-	/* Innovation Gray Light - Used for subtle accents and lighter tones */
-	--color-neutral-light: #A9D1D5;
-	
-	/* Complementary Colors for Visual Interest */
-	
-	/* Volt Yellow - Optional accent for special highlights (can be used sparingly) */
-	--color-accent-warm: #BFD500;
-	
-	/* Catalyst Red Light - Alternative warm accent */
-	--color-accent-warm-alt: #F9423A;
-	
+/* ==========================================================================
+   MOZEE Motorsports self-hosted fonts
+   Montserrat (Google Fonts, v31), latin subset only, WOFF2 only.
+   Three static weights, matching the site's typography rules:
+     400 normal  -> body copy
+     700 normal  -> nav / buttons / labels (template already uppercases these)
+     900 italic  -> display headings (h1/h2/h3), echoing the logo's oblique
+   Files live in assets/webfonts/ alongside the already-vendored Font Awesome
+   fonts, downloaded from fonts.gstatic.com via the Google Fonts css2 API.
+   font-display: swap keeps text visible immediately with a fallback font
+   while these load; only the 400 and 900-italic files are <link rel=preload>
+   in each page's <head> since those render the above-the-fold hero text.
+   ========================================================================== */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../webfonts/montserrat-v31-400-latin.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-	/* Used for: Wrapper alt background */
-	--color-bg-alt: #261c3e;
-	
-	/* Used for: Spotlight image overlays */
-	--color-overlay: rgba(49, 36, 80, 0.9);
-	
-	/* Used for: Spotlight section nth-child(2) background */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../webfonts/montserrat-v31-700-latin.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	font-style: italic;
+	font-weight: 900;
+	font-display: swap;
+	src: url('../webfonts/montserrat-v31-900italic-latin.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+	/*
+		MOZEE Motorsports brand palette (verified, sampled from the logo file):
+		black #000000, white #FFFFFF, red #C52127, light gray #BDBEC0, dark gray #58585A.
+		Every token below is either one of these five raw values, or a tint/shade
+		derived from them (documented per-token). No other hues are introduced.
+
+		Contrast note: red on black measures ~3.62:1 (WCAG AA large-text/UI-only,
+		fails the 4.5:1 normal-text minimum), so red is never used as a text color
+		directly on a black/near-black background below -- only as a large
+		heading/icon color on white, a background fill (white text on red passes
+		at 5.80:1), or a UI accent/border (passes the 3:1 non-text minimum).
+		Every background token that hosts default body text (--color-text-medium)
+		is kept at or below relative luminance 0.183 so white text clears 4.5:1.
+	*/
+
+	/* Primary Brand Colors - MOZEE Palette */
+
+	/* Red - Main brand accent, used for primary CTAs, gradients, and highlights. Raw palette color. */
+	--color-brand-primary: #C52127;
+
+	/* Red, shaded ~65% toward black - Used for backgrounds, footer, sidebar (L=0.047, 10.8:1 with white text) */
+	--color-brand-primary-dark: #7A1418;
+
+	/* Dark gray - Used for headers, secondary accents, wrapper backgrounds. Raw palette color (L=0.098, 7.09:1 with white text) */
+	--color-brand-secondary: #58585A;
+
+	/* Dark gray tinted 25% toward light gray - Used for hover effects, icon accents, lighter (but still dark) backgrounds (L=0.168, 4.82:1 with white text) */
+	--color-brand-secondary-light: #717274;
+
+	/* Text and Contrast Colors */
+
+	/* White, 65% opacity - Used for: Main body text, secondary text content */
+	--color-text-medium: rgba(255, 255, 255, 0.65);
+
+	/* White, 45% opacity - Used for: Lighter text, placeholders, secondary information */
+	--color-text-light: rgba(255, 255, 255, 0.45);
+
+	/* White - Used for: Headings, labels, button text, primary text emphasis. Raw palette color (21:1 on black) */
+	--color-text-primary: #ffffff;
+
+	/* Background and Border Colors */
+
+	/* Black - Used for: Primary background (body, sidebar). Raw palette color */
+	--color-bg-primary: #000000;
+
+	/* White, 20% opacity - Used for: Borders, subtle dividers (mostly decorative; see accessibility skill for when a border must independently clear 3:1) */
+	--color-border: rgba(255, 255, 255, 0.2);
+
+	/* White, 5% opacity - Used for: Subtle backgrounds (code, forms, features) */
+	--color-bg-subtle: rgba(255, 255, 255, 0.05);
+
+	/* Neutral Tonal Colors */
+
+	/* Dark gray - Used for wrapper alt backgrounds and secondary containers. Raw palette color, same as --color-brand-secondary */
+	--color-neutral-dark: #58585A;
+
+	/* Dark gray tinted 15% toward light gray - Used for tertiary accent backgrounds and muted colors (L≈0.14, 5.53:1 with white text) */
+	--color-neutral-medium: #676769;
+
+	/* Light gray - Raw palette color. Safe as text/icon/border color ON DARK surfaces only (11.29:1 vs black). Do NOT use as a fill background under white/light text, and do NOT use as text on a white/light background (1.86:1, fails). */
+	--color-neutral-light: #BDBEC0;
+
+	/* Used for: Wrapper alt background. Black tinted ~8% toward dark gray, for subtle section separation from pure black */
+	--color-bg-alt: #0D0D0E;
+
+	/* Used for: Spotlight image overlays. Black-derived translucent overlay */
+	--color-overlay: rgba(0, 0, 0, 0.75);
+
+	/* Used for: Spotlight section nth-child(2) background. Black-derived, unchanged */
 	--color-bg-dark-subtle: rgba(0, 0, 0, 0.05);
-	
-	/* Used for: Spotlight section nth-child(3) background */
+
+	/* Used for: Spotlight section nth-child(3) background. Black-derived, unchanged */
 	--color-bg-dark-medium: rgba(0, 0, 0, 0.1);
-	
-	/* Used for: Sidebar nav before state background */
-	--color-nav-bg: #3c2c62;
+
+	/* Used for: Sidebar nav before-state background (decorative bar, no text). Raw palette dark gray */
+	--color-nav-bg: #58585A;
+
+	/* Red - fixes a previously undefined --color-brand-pink referenced by the checked-checkbox icon glyph (on a white circle, 5.80:1) and a decorative sidebar accent dot (on black, non-text). Raw palette color */
+	--color-brand-pink: #C52127;
 }
 
 html, body, div, span, applet, object,
@@ -189,7 +238,7 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: var(--color-text-medium);
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: Montserrat, Arial, Helvetica, sans-serif;
 		font-size: 16.5pt;
 		font-weight: normal;
 		line-height: 1.75;
@@ -3321,7 +3370,8 @@ input, select, textarea {
 		}
 
 		.wrapper.style2 {
-			background-color: var(--color-brand-secondary-light);
+			/* brand-secondary (#58585A) rather than the lighter #717274: with the 90% white body-text override below this measures 6.13:1; on #717274 even 90% white only reached 4.31:1 */
+			background-color: var(--color-brand-secondary);
 		}
 
 		.wrapper.style2-alt {
@@ -3334,6 +3384,17 @@ input, select, textarea {
 
 		.wrapper.style3-alt {
 			background-color: var(--color-brand-primary-dark);
+		}
+
+		/*
+			Body-copy contrast on colored section backgrounds. The default body text
+			(65% white) passes AA on black (8.6:1) but fails on the gray and red
+			section fills, so colored wrappers brighten it to 90% white:
+			style1 #7A1418 = 7.2:1, style1-alt #676769 = 4.96:1,
+			style2 #58585A = 6.13:1, style3 #C52127 = 4.93:1. Headings stay #fff.
+		*/
+		.wrapper.style1, .wrapper.style1-alt, .wrapper.style2, .wrapper.style2-alt, .wrapper.style3, .wrapper.style3-alt {
+			color: rgba(255, 255, 255, 0.9);
 		}
 
 		.wrapper.fullscreen {
@@ -3482,7 +3543,8 @@ input, select, textarea {
 
 					#header > nav > ul > li a {
 						border: 0;
-						color: rgba(255, 255, 255, 0.35);
+						/* 80% white on the #58585A header = 5.25:1 (AA for the 13.2px bold rendered size); the template's original 35% white measured 2.30:1 */
+						color: rgba(255, 255, 255, 0.8);
 						display: inline-block;
 						font-size: 0.6em;
 						font-weight: bold;
@@ -3491,7 +3553,7 @@ input, select, textarea {
 					}
 
 						#header > nav > ul > li a:hover {
-							color: var(--color-text-medium);
+							color: var(--color-text-primary);
 						}
 
 						#header > nav > ul > li a.active {
@@ -3586,7 +3648,8 @@ input, select, textarea {
 
 	#footer > .inner .menu {
 		font-size: 0.8em;
-		color: var(--color-border);
+		/* white on the style1-alt gray (#676769) footer background = 5.66:1, passes AA for normal text; the previous var(--color-border) (20% white) measured ~1.6:1 */
+		color: var(--color-text-primary);
 	}
 
 	#header + #wrapper + #footer > .inner {
@@ -3971,4 +4034,268 @@ input, select, textarea {
 				background-attachment: scroll;
 			}
 
+		}
+
+/* ==========================================================================
+   MOZEE Motorsports — Race Theme
+   ==========================================================================
+   Racing visual language layered on top of the template above. Rules here
+   intentionally override earlier declarations by source order (same
+   selector, later wins) rather than editing those rules in place, so this
+   whole pass is reviewable as one block. No color tokens are introduced or
+   changed here — every color below reuses the existing :root palette.
+   ========================================================================== */
+
+/* --- Display typography: h1/h2/h3 pick up the logo's heavy oblique --- */
+
+	h1, h2, h3 {
+		font-weight: 900;
+		font-style: italic;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		letter-spacing: -0.01em;
+	}
+
+	/*
+		Oblique accent bar (echoes the logo's ~12deg slant) before h1/h2 only,
+		per spec. Built as a two-tone (white/red) skewed block rather than
+		solid red: h1/h2 appear on every wrapper background this site uses
+		(black, dark-red #7A1418, gray #58585A/#676769, red #C52127), and red
+		measures well under 3:1 against several of those (e.g. red-on-#58585A
+		is ~1.22:1, red-on-red is ~1:1) so solid red would be invisible or
+		fail non-text contrast in those sections. White passes >=5.8:1 against
+		all four backgrounds, so the white two-thirds of the bar is what
+		carries the required visibility; red is a accent riding on the white,
+		not read on its own against the section background.
+	*/
+	h1::before, h2::before {
+		content: '';
+		display: inline-block;
+		width: 0.5em;
+		height: 0.85em;
+		margin-right: 0.3em;
+		vertical-align: -0.05em;
+		background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 45%, var(--color-brand-primary) 45%, var(--color-brand-primary) 100%);
+		-moz-transform: skewX(-12deg);
+		-webkit-transform: skewX(-12deg);
+		-ms-transform: skewX(-12deg);
+		transform: skewX(-12deg);
+	}
+
+/* --- Header: logo replaces the text title, sized to stay compact --- */
+
+	#header > .title {
+		line-height: 0;
+	}
+
+		#header > .title img {
+			display: block;
+			height: 44px;
+			width: auto;
+		}
+
+		@media screen and (max-width: 480px) {
+
+			#header > .title img {
+				height: 36px;
+			}
+
+		}
+
+/* --- Nav: active/hover underline, red and skewed --- */
+
+	#header > nav > ul > li a {
+		position: relative;
+	}
+
+		/*
+			Same two-tone reasoning as the heading accent bar above: the header
+			background is always #58585A, and red directly on #58585A measures
+			~1.22:1 (fails the 3:1 non-text minimum), so the bar is drawn as a
+			white base with a red segment riding on it rather than solid red.
+			White-on-#58585A measures 7.09:1.
+		*/
+		#header > nav > ul > li a.active::after,
+		#header > nav > ul > li a:hover::after {
+			content: '';
+			position: absolute;
+			left: 0.1em;
+			right: 0.1em;
+			bottom: -0.65em;
+			height: 0.2em;
+			background-image: linear-gradient(to right, #ffffff 0%, #ffffff 55%, var(--color-brand-primary) 55%, var(--color-brand-primary) 100%);
+			-moz-transform: skewX(-12deg);
+			-webkit-transform: skewX(-12deg);
+			-ms-transform: skewX(-12deg);
+			transform: skewX(-12deg);
+		}
+
+/* --- Buttons: chamfered/parallelogram shape instead of a pill --- */
+
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		border-radius: 0.15em;
+		/* parallelogram via skew rather than clip-path: clip-path's angled corners sliced away the left/right border strips, leaving outline buttons with only top/bottom edges. Skew keeps the full border, and the slight lean on the label echoes the logo's oblique. */
+		-moz-transform: skewX(-8deg);
+		-webkit-transform: skewX(-8deg);
+		-ms-transform: skewX(-8deg);
+		transform: skewX(-8deg);
+		/* outline buttons sit on black sections and the hero photo; the template's 1px 20%-white border was near-invisible there (and fails the 3:1 non-text component minimum). 85% white on black ~ 15:1 */
+		border-width: 2px !important;
+		border-color: rgba(255, 255, 255, 0.85) !important;
+	}
+
+		input[type="submit"]:after,
+		input[type="reset"]:after,
+		input[type="button"]:after,
+		button:after,
+		.button:after {
+			border-radius: 0.15em;
+		}
+
+		input[type="submit"].primary,
+		input[type="reset"].primary,
+		input[type="button"].primary,
+		button.primary,
+		.button.primary {
+			border-radius: 0.15em;
+		}
+
+/* --- Sharper geometry: cards/boxes move toward square corners --- */
+
+	.box {
+		border-radius: 2px;
+	}
+
+	.features {
+		border-radius: 2px;
+	}
+
+/* --- Hero: full-bleed car photo behind a left-aligned headline block --- */
+
+	#intro {
+		/*
+			Scrim contrast math, worst case: the underlying photo pixel is pure
+			white (L=1.0), and the text is the site's default body color (65%
+			white, rgba(255,255,255,0.65)) brightened to 90% white below to match
+			the same fix already applied to the other colored wrapper sections
+			(see the .wrapper.style1/2/3 rule earlier in this file) -- 90% white
+			is what's actually rendered here, not 100%, so that's what's checked.
+			A translucent-white glyph composites toward whatever sits behind it,
+			so both the text's effective color AND the background's effective
+			color are functions of the same overlay alpha `a` (photo channel
+			255, overlay black at alpha a): bg_channel = (1-a)*255,
+			text_channel = 0.9*255 + 0.1*bg_channel. Solving numerically for the
+			minimum alpha that keeps contrast >= 4.5:1 gives a ~ 0.58; the
+			gradient below never drops below 0.62 until 66% width, and the text
+			column is capped well inside that on every viewport down to 736px
+			(see #intro .inner max-width below). Below 736px the column goes
+			full-width, so a separate flat high-alpha overlay replaces the taper
+			entirely (see the max-width: 736px block below). Checked stops
+			(desktop gradient, 90% white text, worst-case white photo pixel):
+			  0%   alpha 0.92 -> bg L ~0.007 -> ~12.8:1
+			  46%  alpha 0.90 -> bg L ~0.010 -> ~10.6:1
+			  66%  alpha 0.62 -> bg L ~0.119 -> ~5.40:1
+			  100% alpha 0.15 (no text placed here; photo reads through clearly)
+		*/
+		background-image:
+			linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.90) 46%, rgba(0,0,0,0.62) 66%, rgba(0,0,0,0.15) 100%),
+			url("../../images/mp7.jpg");
+		background-position: center, center;
+		background-repeat: no-repeat, no-repeat;
+		background-size: cover, cover;
+		position: relative;
+		overflow: hidden;
+	}
+
+		#intro .inner {
+			max-width: 42em;
+			text-align: left;
+			position: relative;
+			z-index: 1;
+		}
+
+		#intro .inner h1 {
+			/* max sized so the longest word (MOTORSPORTS, 11 glyphs at ~0.75em advance in Montserrat 900 italic) fits the ~34em text column without intra-word breaking; wraps only between words */
+			font-size: clamp(2.2rem, 6vw, 3.75rem);
+			line-height: 1.05;
+		}
+
+		/*
+			Headings already render at full white (var(--color-text-primary))
+			via the base h1..h6 rule and buttons already force full white via
+			an !important rule, so only the plain paragraph needs brightening
+			above the site default (65% white) -- see the scrim contrast math
+			on #intro above, which is computed against this 90% value.
+		*/
+		#intro .inner p {
+			max-width: 38em;
+			color: rgba(255, 255, 255, 0.9);
+		}
+
+		/*
+			Speed lines: a narrow band of low-opacity diagonal stripes along the
+			hero's right edge, masked to fade toward nothing on its left side
+			so it reads as texture, not a hard block. Sits above the photo
+			(z-index: 0) but below the text column (.inner gets z-index: 1
+			below), since both are positioned descendants of #intro.
+		*/
+		#intro:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: 18%;
+			min-width: 8em;
+			background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 14px);
+			-webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+			mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+			pointer-events: none;
+			z-index: 0;
+		}
+
+		@media screen and (max-width: 736px) {
+
+			#intro .inner {
+				max-width: 100%;
+			}
+
+			/*
+				Below 736px #intro .inner goes full-width (above), so text can
+				land anywhere across the photo -- the left-to-right taper no
+				longer guarantees every text position stays above the ~0.58
+				minimum alpha worked out above. Swap to a flat, uniformly high
+				overlay instead: alpha 0.82 against a worst-case pure-white photo
+				pixel measures ~11.3:1 for the same 90% white text, comfortably
+				clearing 4.5:1 everywhere in the photo, not just on the left.
+			*/
+			#intro {
+				background-image:
+					linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)),
+					url("../../images/mp7.jpg");
+			}
+
+		}
+
+/* --- Footer: thin speed-stripe accent along the top edge --- */
+
+	#footer {
+		position: relative;
+	}
+
+		#footer:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 4px;
+			background-image: repeating-linear-gradient(135deg, var(--color-brand-primary) 0, var(--color-brand-primary) 10px, var(--color-text-primary) 10px, var(--color-text-primary) 20px);
+			opacity: 0.85;
 		}
