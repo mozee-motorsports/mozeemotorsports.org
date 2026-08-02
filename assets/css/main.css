@@ -103,7 +103,7 @@
 	/* Dark gray - Used for wrapper alt backgrounds and secondary containers. Raw palette color, same as --color-brand-secondary */
 	--color-neutral-dark: #58585A;
 
-	/* Dark gray tinted 15% toward light gray - Used for tertiary accent backgrounds and muted colors (L≈0.14, 5.53:1 with white text) */
+	/* Dark gray tinted 15% toward light gray - Used for tertiary accent backgrounds and muted colors (Lâ‰ˆ0.14, 5.53:1 with white text) */
 	--color-neutral-medium: #676769;
 
 	/* Light gray - Raw palette color. Safe as text/icon/border color ON DARK surfaces only (11.29:1 vs black). Do NOT use as a fill background under white/light text, and do NOT use as text on a white/light background (1.86:1, fails). */
@@ -4037,13 +4037,13 @@ input, select, textarea {
 		}
 
 /* ==========================================================================
-   MOZEE Motorsports — Race Theme
+   MOZEE Motorsports â€” Race Theme
    ==========================================================================
    Racing visual language layered on top of the template above. Rules here
    intentionally override earlier declarations by source order (same
    selector, later wins) rather than editing those rules in place, so this
    whole pass is reviewable as one block. No color tokens are introduced or
-   changed here — every color below reuses the existing :root palette.
+   changed here â€” every color below reuses the existing :root palette.
    ========================================================================== */
 
 /* --- Display typography: h1/h2/h3 pick up the logo's heavy oblique --- */
@@ -4165,6 +4165,23 @@ input, select, textarea {
 		.button.primary {
 			border-radius: 0.15em;
 		}
+
+/* --- Image aspect ratio fix --- */
+
+	/*
+		Content images carry width/height HTML attributes (set for layout-shift
+		prevention). The template's sizing rules (e.g. .image.fit img
+		{ width: 100%; }) override only the width, leaving the attribute height
+		as a fixed pixel height, which visibly stretches/squashes photos at any
+		viewport narrower or wider than the image's intrinsic size. height:auto
+		restores the intrinsic aspect ratio while keeping the attributes for
+		pre-layout space reservation. The header logo is exempt: its own rule
+		(#header > .title img { height: 44px }) is more specific and still wins.
+	*/
+	#wrapper img {
+		max-width: 100%;
+		height: auto;
+	}
 
 /* --- Sharper geometry: cards/boxes move toward square corners --- */
 
@@ -4299,3 +4316,43 @@ input, select, textarea {
 			background-image: repeating-linear-gradient(135deg, var(--color-brand-primary) 0, var(--color-brand-primary) 10px, var(--color-text-primary) 10px, var(--color-text-primary) 20px);
 			opacity: 0.85;
 		}
+/* --- Compact mobile header --- */
+
+	/*
+		The template's own <=480px header rule was written for its original
+		5-item single-row anchor nav: it gives every nav link height/line-height
+		6em (57.6px per row). With this site's 9 links wrapping to 4 rows that
+		produced a ~307px-tall header, a third of a phone screen. These
+		overrides (same specificity, later in source, so they win) compact the
+		wrapped nav to tight rows of readable links. Tap targets stay ~38px
+		tall via padding, above the WCAG 2.5.8 AA 24px minimum.
+	*/
+	@media screen and (max-width: 480px) {
+
+		#header .title {
+			padding: 12px 0;
+		}
+
+		#header > nav > ul {
+			padding: 0.25em 0 0.75em 0;
+		}
+
+			#header > nav > ul > li {
+				margin-left: 0;
+				margin-right: 1.05em;
+			}
+
+				#header > nav > ul > li a {
+					height: auto;
+					line-height: 1.2;
+					letter-spacing: 0.15em;
+					padding: 0.9em 0.1em;
+					font-size: 0.68em;
+				}
+
+					#header > nav > ul > li a.active::after,
+					#header > nav > ul > li a:hover::after {
+						bottom: 0.15em;
+					}
+
+	}
