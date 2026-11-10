@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mozee Motorsports Merch</title>
+  <meta name="description" content="Order official Mozee Motorsports Formula Hybrid team merchandise.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="icon" href="images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="demo-banner" class="demo-banner" hidden>
+    <strong>Demo mode.</strong> Not connected to Excel yet. Stock and orders are saved only in this browser.
+    <button type="button" id="demo-reset" class="link-btn">Reset demo</button>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <img class="logo" src="images/logo.jpg" alt="Mozee Motorsports Formula Hybrid">
+      <div class="header-copy">
+        <p class="eyebrow">MSOE Formula Hybrid</p>
+        <h1>Team Merch Store</h1>
+        <p class="live-status" aria-live="polite">
+          <span class="live-dot" id="live-dot"></span>
+          <span id="live-text">Loading live stock…</span>
+        </p>
+      </div>
+    </div>
+    <div class="stripe" aria-hidden="true"></div>
+  </header>
+
+  <main class="wrap layout">
+    <section aria-labelledby="shop-heading">
+      <h2 id="shop-heading" class="section-title">Pick your gear</h2>
+      <div id="notice" class="notice" role="status" hidden></div>
+      <div id="products" class="products"></div>
+    </section>
+
+    <aside id="cart" class="cart" aria-labelledby="cart-heading">
+      <div class="cart-head">
+        <h2 id="cart-heading">Your order</h2>
+        <button type="button" class="icon-btn cart-close" id="cart-close" aria-label="Close cart">&times;</button>
+      </div>
+      <ul id="cart-lines" class="cart-lines"></ul>
+      <p id="cart-empty" class="cart-empty">Nothing here yet. Pick a size and tap <b>Add to order</b>.</p>
+      <div class="cart-foot">
+        <div class="total-row"><span>Total</span><strong id="cart-total">$0</strong></div>
+        <button type="button" id="checkout-btn" class="btn btn-primary btn-block" disabled>Check out</button>
+      </div>
+    </aside>
+  </main>
+
+  <button type="button" id="cart-bar" class="cart-bar" hidden>
+    <span><b id="bar-count">0</b> items</span>
+    <span>View order · <b id="bar-total">$0</b></span>
+  </button>
+  <div id="scrim" class="scrim" hidden></div>
+
+  <footer class="site-footer wrap">
+    <p id="contact-text"></p>
+  </footer>
+
+  <dialog id="checkout" class="dialog" aria-labelledby="checkout-title">
+    <form id="checkout-form" novalidate>
+      <div class="dialog-head">
+        <h2 id="checkout-title">Your info</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Close">&times;</button>
+      </div>
+      <div class="dialog-body">
+        <div id="fields"></div>
+        <!-- Honeypot: humans never see or fill this. -->
+        <div class="hp" aria-hidden="true">
+          <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="summary">
+          <h3>Order summary</h3>
+          <ul id="summary-lines"></ul>
+          <div class="total-row"><span>Total</span><strong id="summary-total"></strong></div>
+        </div>
+        <p id="checkout-note" class="fine"></p>
+        <p id="checkout-error" class="error" role="alert" hidden></p>
+      </div>
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-ghost" data-close>Back</button>
+        <button type="submit" id="submit-btn" class="btn btn-primary">Place order</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="done" class="dialog" aria-labelledby="done-title">
+    <div class="dialog-body done">
+      <div class="check" aria-hidden="true">✓</div>
+      <h2 id="done-title">Order placed!</h2>
+      <p>Your order number is</p>
+      <p class="order-id" id="done-id"></p>
+      <p class="fine">Screenshot this page or write your order number down.</p>
+      <ul id="done-lines" class="done-lines"></ul>
+      <div class="total-row"><span>Total</span><strong id="done-total"></strong></div>
+      <p id="done-payment" class="pay-box" hidden></p>
+      <p id="done-contact" class="fine"></p>
+    </div>
+    <div class="dialog-foot">
+      <button type="button" class="btn btn-primary btn-block" data-close>Done</button>
+    </div>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
